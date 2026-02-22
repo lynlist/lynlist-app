@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lynlist | Sakura Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sakura-bg"></div>
+
+    <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+    <div class="main-wrapper">
+        <header>
+            <h1 class="main-title">Lynlist</h1>
+            <p class="subtitle">my to do list because why not</p>
+        </header>
+
+        <div class="stack-container">
+            <section class="glass-card">
+                <h2 id="timer-status" class="card-header">Focus Time</h2>
+                <div id="timer-display">25:00</div>
+                <div class="controls">
+                    <button id="start-btn" onclick="startTimer()">Start</button>
+                    <button onclick="pauseTimer()">Pause</button>
+                    <button onclick="skipSession()">Skip</button>
+                    <button onclick="resetTimer()">Reset</button>
+                </div>
+                <p id="session-count">Sessions: 0 / 4</p>
+            </section>
+
+            <section class="glass-card">
+                <h2 class="card-header">Daily Courses</h2>
+                <div class="input-group">
+                    <input type="text" id="courseInput" placeholder="Enter course name...">
+                    <button class="add-btn" onclick="addCourse()">Add</button>
+                </div>
+                <ul id="courseList"></ul>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
