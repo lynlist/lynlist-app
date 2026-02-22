@@ -1,7 +1,23 @@
 let timer;
-let timeLeft = 25 * 60;
-let isBreak = false;
 let sessionCounter = 0;
+let isBreak = false;
+
+let focusTime = 25;
+let shortBreak = 5;
+let longBreak = 15;
+let timeLeft = focusTime * 60;
+
+function applySettings() {
+    focusTime = parseInt(document.getElementById('focus-input').value) || 25;
+    shortBreak = parseInt(document.getElementById('short-input').value) || 5;
+    longBreak = parseInt(document.getElementById('long-input').value) || 15;
+    
+    // Only reset the timer clock if it's not currently running
+    if (!timer) {
+        timeLeft = focusTime * 60;
+        updateDisplay();
+    }
+}
 
 function updateDisplay() {
     const min = Math.floor(timeLeft / 60);
@@ -31,21 +47,19 @@ function handleSessionEnd() {
     clearInterval(timer);
     timer = null;
     document.getElementById('start-btn').textContent = "Start";
-    
     playAlarm();
 
     if (!isBreak) {
         sessionCounter++;
         autoAddTomato();
-        
         if (sessionCounter % 4 === 0) {
-            startBreak(15, "Long Break 🌸");
+            startBreak(longBreak, "Long Break 🌸");
         } else {
-            startBreak(5, "Short Break 🍵");
+            startBreak(shortBreak, "Short Break 🍵");
         }
     } else {
         isBreak = false;
-        timeLeft = 25 * 60;
+        timeLeft = focusTime * 60;
         document.getElementById('timer-status').textContent = "Focus Time";
     }
     updateDisplay();
@@ -56,12 +70,9 @@ function startBreak(minutes, label) {
     isBreak = true;
     timeLeft = minutes * 60;
     document.getElementById('timer-status').textContent = label;
-    updateDisplay();
 }
 
-function skipSession() {
-    handleSessionEnd();
-}
+function skipSession() { handleSessionEnd(); }
 
 function autoAddTomato() {
     const activeCourses = document.querySelectorAll('.course-item');
@@ -89,7 +100,7 @@ function resetTimer() {
     pauseTimer(); 
     isBreak = false;
     sessionCounter = 0;
-    timeLeft = 25 * 60; 
+    timeLeft = focusTime * 60; 
     document.getElementById('timer-status').textContent = "Focus Time";
     updateDisplay(); 
     updateSessionText();
@@ -98,21 +109,19 @@ function resetTimer() {
 function addCourse() {
     const input = document.getElementById('courseInput');
     if (!input.value) return;
-
     const li = document.createElement('li');
     li.className = 'course-item';
     li.innerHTML = `
         <div class="course-main" onclick="toggleNotes(this)">
             <span class="course-name" onclick="toggleDone(event, this)">${input.value}</span>
-            <div>
+            <div class="action-btns">
                 <span class="pomo-counter">🍅 <span class="count">0</span></span>
                 <button class="icon-btn" onclick="addPomo(event, this)">➕</button>
                 <button class="icon-btn" onclick="this.closest('.course-item').remove()">❌</button>
             </div>
         </div>
-        <textarea class="notes-area" placeholder="Add notes for this course..." onclick="event.stopPropagation()"></textarea>
+        <textarea class="notes-area" placeholder="Write notes for this session..." onclick="event.stopPropagation()"></textarea>
     `;
-    
     document.getElementById('courseList').appendChild(li);
     input.value = '';
 }

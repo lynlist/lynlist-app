@@ -3,28 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lynlist | Sakura Study</title>
+    <title>Lynlist | Do it for yourself</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="sakura-bg"></div>
-
     <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
 
     <div class="main-wrapper">
-        <header>
+        <header class="centered-header">
             <h1 class="main-title">Lynlist</h1>
-            <p class="subtitle">my to do list because why not</p>
+            <p class="subtitle">Do it for yourself</p>
         </header>
 
         <div class="stack-container">
             <section class="glass-card">
                 <h2 id="timer-status" class="card-header">Focus Time</h2>
+                
+                <div class="timer-settings">
+                    <div class="setting-item">
+                        <label>Focus</label>
+                        <input type="number" id="focus-input" value="25">
+                    </div>
+                    <div class="setting-item">
+                        <label>Short</label>
+                        <input type="number" id="short-input" value="5">
+                    </div>
+                    <div class="setting-item">
+                        <label>Long</label>
+                        <input type="number" id="long-input" value="15">
+                    </div>
+                    <button class="apply-btn" onclick="applySettings()">Apply</button>
+                </div>
+
                 <div id="timer-display">25:00</div>
+                
                 <div class="controls">
                     <button id="start-btn" onclick="startTimer()">Start</button>
                     <button onclick="pauseTimer()">Pause</button>
@@ -36,9 +52,9 @@
 
             <section class="glass-card">
                 <h2 class="card-header">Daily Courses</h2>
-                <div class="input-group">
-                    <input type="text" id="courseInput" placeholder="Enter course name...">
-                    <button class="add-btn" onclick="addCourse()">Add</button>
+                <div class="input-container">
+                    <input type="text" id="courseInput" placeholder="What are we studying today?">
+                    <button class="add-btn-main" onclick="addCourse()">Add Task</button>
                 </div>
                 <ul id="courseList"></ul>
             </section>

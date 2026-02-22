@@ -1,5 +1,5 @@
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg: rgba(255, 255, 255, 0.7);
   --pink-accent: #f0a5a5;
   --text-color: #5d4e4e;
 }
@@ -16,97 +16,76 @@ body, html {
   filter: blur(5px); z-index: -1; transform: scale(1.1);
 }
 
-.main-wrapper { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+.main-wrapper { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; }
 
-/* BIG BOLD TITLE */
+.centered-header { text-align: center; width: 100%; margin-bottom: 40px; }
 .main-title {
-  font-size: 5rem; 
-  font-weight: 700;
-  margin: 0; 
-  color: white;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  letter-spacing: -2px;
+  font-size: 5.5rem; font-weight: 700; margin: 0; color: white;
+  text-shadow: 0 10px 25px rgba(0,0,0,0.15); letter-spacing: -3px;
 }
+.subtitle { color: white; font-size: 1.4rem; font-weight: 600; opacity: 0.95; }
 
-.subtitle { color: white; margin-bottom: 30px; font-size: 1.3rem; font-weight: 600; opacity: 0.9; }
-
-/* VERTICAL STACK */
-.stack-container { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 30px; 
-  width: 100%; 
-  max-width: 500px; /* Wider, but focused */
-  align-items: center;
-}
+.stack-container { display: flex; flex-direction: column; gap: 35px; width: 100%; max-width: 550px; align-items: center; }
 
 .glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 30px;
-  padding: 35px;
-  width: 100%; /* Fill the container width */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-sizing: border-box;
+  background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 35px; padding: 40px; width: 100%; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  text-align: center; border: 1px solid rgba(255, 255, 255, 0.5); box-sizing: border-box;
 }
 
-.card-header { font-size: 1.6rem; margin-top: 0; margin-bottom: 5px; opacity: 0.8; }
-
-#timer-display { font-size: 5.5rem; font-weight: 600; color: var(--pink-accent); margin: 10px 0; }
-#session-count { font-size: 0.9rem; opacity: 0.7; margin-top: 15px; }
-
-/* SLEEK INPUT */
-.input-group { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 25px; }
-
-input {
-  width: 90%; background: transparent; border: none;
-  border-bottom: 2px solid var(--pink-accent);
-  padding: 10px; font-family: inherit; font-size: 1.2rem;
-  text-align: center; color: var(--text-color); transition: 0.3s;
+/* SETTINGS AREA - Now including the Apply Button */
+.timer-settings {
+    display: flex; justify-content: center; align-items: flex-end; gap: 12px;
+    margin-bottom: 20px; background: rgba(255,255,255,0.3);
+    padding: 15px; border-radius: 20px;
+}
+.setting-item label { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; opacity: 0.7; }
+.setting-item input { 
+    width: 45px; border: none; background: white; padding: 8px; 
+    border-radius: 10px; text-align: center; font-family: inherit; font-weight: 600; margin-top: 5px; 
 }
 
-input:focus { outline: none; background: rgba(255, 255, 255, 0.2); border-radius: 12px 12px 0 0; }
-
-/* BUTTONS */
-button {
-  background: var(--pink-accent); color: white; border: none;
-  padding: 12px 22px; border-radius: 15px; cursor: pointer;
-  font-family: inherit; font-weight: 600; font-size: 1rem;
-  transition: 0.3s; margin: 5px;
+/* SMALL APPLY BUTTON FOR SETTINGS */
+.apply-btn {
+    padding: 8px 15px !important; font-size: 0.85rem !important;
+    height: 35px; margin-bottom: 2px !important;
 }
 
+#timer-display { font-size: 6rem; font-weight: 700; color: var(--pink-accent); margin: 10px 0; letter-spacing: -2px; }
+
+/* REFINED MAIN BUTTONS */
+button { 
+    background: var(--pink-accent); color: white; border: none;
+    padding: 12px 22px; border-radius: 15px; cursor: pointer;
+    font-family: inherit; font-weight: 600; font-size: 1rem;
+    transition: 0.3s; margin: 5px;
+}
 button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(240, 165, 165, 0.4); }
 
-/* LIST */
-ul { padding: 0; list-style: none; margin-top: 10px; width: 100%; }
-
-.course-item {
-  background: rgba(255, 255, 255, 0.45);
-  margin-bottom: 15px; padding: 18px; border-radius: 20px;
+/* TO-DO INPUT AREA */
+.input-container { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 30px; }
+#courseInput {
+    width: 100%; max-width: 420px; background: rgba(255,255,255,0.5); border: 2px solid transparent;
+    padding: 15px; border-radius: 20px; font-family: inherit; font-size: 1.1rem;
+    text-align: center; color: var(--text-color); transition: 0.3s;
 }
+#courseInput:focus { outline: none; border-color: var(--pink-accent); background: white; }
 
+/* LIST & NOTES */
+ul { padding: 0; list-style: none; width: 100%; }
+.course-item { 
+    background: rgba(255, 255, 255, 0.5); margin-bottom: 15px; padding: 20px; 
+    border-radius: 25px; border: 1px solid rgba(255,255,255,0.2);
+}
 .course-main { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-
-.course-name { font-size: 1.2rem; font-weight: 600; }
+.course-name { font-size: 1.2rem; font-weight: 600; text-align: left; flex: 1; }
 .done { text-decoration: line-through; opacity: 0.4; }
+.icon-btn { font-size: 1.4rem; background: none; border: none; color: var(--pink-accent); padding: 0 6px; box-shadow: none; }
+.icon-btn:hover { transform: none; box-shadow: none; }
 
-.pomo-counter { font-size: 1.3rem; margin-right: 8px; color: var(--pink-accent); font-weight: bold; }
-
-.icon-btn {
-  font-size: 1.4rem; background: none; border: none; 
-  color: var(--pink-accent); cursor: pointer; padding: 0 6px;
-}
-
-/* CENTERED NOTES */
 textarea {
-  width: 95%; display: block; margin: 0 auto;
-  height: 0; overflow: hidden; transition: 0.4s ease-in-out;
-  border: none; background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px; font-family: inherit; font-size: 1rem;
-  resize: none; box-sizing: border-box; padding: 0;
+  width: 100%; display: block; margin: 0 auto; height: 0; overflow: hidden; 
+  transition: 0.4s ease-in-out; border: none; background: white; border-radius: 18px;
+  font-family: inherit; font-size: 1rem; resize: none; box-sizing: border-box; padding: 0;
 }
-
-.active-notes { height: 90px; padding: 15px; margin-top: 15px; border: 1px solid white; }
+.active-notes { height: 110px; padding: 18px; margin-top: 15px; border: 1px solid rgba(240, 165, 165, 0.2); }
